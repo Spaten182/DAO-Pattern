@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package dataLayer;
-package settings;
+import settings.*;
 
 /**
  *
