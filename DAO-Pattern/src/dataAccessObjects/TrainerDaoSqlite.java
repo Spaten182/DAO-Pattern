@@ -32,18 +32,39 @@ public class TrainerDaoSqlite implements ITrainerDao {
     
     @Override
     public void delete(ITrainer trainer) {
-        TrainerDaoSqlite TDS = new TrainerDaoSqlite();
-        List<ITrainer> liste = TDS.select();
-        
-        liste.remove(trainer);
+        try {
+            Class.forName(CLASSNAME);
+            Connection conn = DriverManager.getConnection(CONNECTIONSTRING);
+            String sql = "DELETE FROM trainer WHERE id = ?";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setInt(1, trainer.getId());
+            statement.executeUpdate();
+        }
+        catch (Exception e) {
+            
+        }
     }
     
     @Override
     public ITrainer first() {
+        try {
+            Class.forName(CLASSNAME);
+            Connection conn = DriverManager.getConnection(CONNECTIONSTRING);
+            String sql = "SELECT ROWID, * FROM trainer WHERE rowid = 1";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+            
+            // TODO: convert string to trainer object
+        }
+        catch (Exception e) {
+            
+        }
+        /*
         TrainerDaoSqlite TDS = new TrainerDaoSqlite();
         List<ITrainer> liste = TDS.select();
         
         return liste.get(0);
+        */
     }
     
     @Override
@@ -92,7 +113,19 @@ public class TrainerDaoSqlite implements ITrainerDao {
     
     @Override
     public void save(ITrainer trainer) {
-        
+        try {
+            Class.forName(CLASSNAME);
+            Connection conn = DriverManager.getConnection(CONNECTIONSTRING);
+            String sql = "INSERT INTO trainer (name, 'alter', erfahrung) VALUES (?, ?, ?)";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1, trainer.getName());
+            statement.setInt(2, trainer.getAlter());
+            statement.setInt(3, trainer.getErfahrung());
+            statement.executeUpdate();
+        }
+        catch (Exception e) {
+            
+        }
     }
     
     @Override
@@ -101,11 +134,13 @@ public class TrainerDaoSqlite implements ITrainerDao {
             Class.forName(CLASSNAME);
             
             Connection conn = DriverManager.getConnection(CONNECTIONSTRING);
-            String sql = "SELECT * FROM trainer";
+            String sql = "SELECT ROWID, * FROM trainer";
             PreparedStatement statement = conn.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();
             
-        } catch (Exception e) {
+            // TODO: convert resultSet string to List<ITrainer>
+        }
+        catch (Exception e) {
             Logger.getLogger(TrainerDaoSqlite.class.getName()).log(Level.SEVERE, null, e);
         }
 
@@ -114,7 +149,17 @@ public class TrainerDaoSqlite implements ITrainerDao {
     
     @Override
     public ITrainer select(int id) {
-        
-        return null;
+        try {
+            Connection conn = DriverManager.getConnection(CONNECTIONSTRING);
+            String sql = "SELECT ROWID, * FROM trainer WHERE rowid = ?";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            
+            // TODO: convert resultSet string to trainer object
+        }
+        catch (Exception e) {
+            
+        }
     }
 }
