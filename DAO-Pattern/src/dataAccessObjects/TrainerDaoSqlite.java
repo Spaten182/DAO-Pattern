@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -21,7 +22,7 @@ import java.sql.Statement;
  */
 public class TrainerDaoSqlite implements ITrainerDao {
     private String CLASSNAME = "org.sqlite.JDBC";
-    private String CONNECTIONSTRING = "E:\\PRG\\DAO-Pattern\\DAO-Pattern\\databases\\trainer.db";
+    private String CONNECTIONSTRING = "jdbc:sqlite:DAO-Pattern/databases/trainer.db";
     
     @Override
     public ITrainer create() {
@@ -100,6 +101,10 @@ public class TrainerDaoSqlite implements ITrainerDao {
             Class.forName(CLASSNAME);
             
             Connection conn = DriverManager.getConnection(CONNECTIONSTRING);
+            String sql = "SELECT * FROM trainer";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+            
         } catch (Exception e) {
             Logger.getLogger(TrainerDaoSqlite.class.getName()).log(Level.SEVERE, null, e);
         }
