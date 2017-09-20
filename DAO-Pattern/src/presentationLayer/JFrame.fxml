@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+ 
+<?import java.net.*?> 
+<?import javafx.geometry.*?> 
+<?import javafx.scene.control.*?> 
+<?import javafx.scene.layout.*?> 
+<?import javafx.scene.text.*?> 
+<?import javafx.scene.control.Menu?> 
+<?import javafx.scene.control.MenuBar?> 
+<?import javafx.scene.control.MenuItem?> 
+<?import javafx.scene.control.TableColumn?> 
+<?import javafx.scene.control.TableView?> 
+<?import javafx.scene.layout.AnchorPane?> 
+<?import javafx.scene.layout.BorderPane?> 
+  
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1"> 
+   <children> 
+      <BorderPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"> 
+         <top> 
+            <AnchorPane prefHeight="10.0" prefWidth="600.0" BorderPane.alignment="CENTER"> 
+               <children> 
+                  <MenuBar AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"> 
+                    <menus> 
+                      <Menu text="File"> 
+                        <items> 
+                            <MenuItem text="New" /> 
+                            <MenuItem text="Open" /> 
+                            <MenuItem text="Save" /> 
+                            <MenuItem text="Save As..." /> 
+                            <MenuItem text="Exit" /> 
+                        </items> 
+                      </Menu> 
+                      <Menu text="Edit"> 
+                        <items> 
+                            <MenuItem text="Undo" /> 
+                            <MenuItem text="Delete" /> 
+                        </items> 
+                      </Menu> 
+                      <Menu text="Help"> 
+                        <items> 
+                          <MenuItem text="About" /> 
+                        </items> 
+                      </Menu> 
+                    </menus> 
+                  </MenuBar> 
+               </children> 
+            </AnchorPane> 
+         </top> 
+         <center> 
+            <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER"> 
+              <columns> 
+                <TableColumn minWidth="-1.0" prefWidth="128.0" resizable="false" text="ID" /> 
+                <TableColumn minWidth="-1.0" prefWidth="128.0" text="Name" /> 
+                  <TableColumn minWidth="-1.0" prefWidth="128.0" text="Erfahrung" /> 
+                  <TableColumn minWidth="-1.0" prefWidth="128.0" text="Alter" /> 
+              </columns> 
+            </TableView> 
+         </center> 
+      </BorderPane> 
+   </children> 
+</AnchorPane> 
