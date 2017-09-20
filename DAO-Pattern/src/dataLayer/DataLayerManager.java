@@ -29,9 +29,25 @@ public class DataLayerManager {
     }
     
     public IDataLayer getDataLayer() {
-        // Hier muss eine Auswahl aus den Settings gelesen werden
-        // Ob XML oder SQLite Daten verwendet werden sollen
-        return null; // Eig. Objekt übergeben
+        SettingsManager sm = new SettingsManager();
+        sm = sm.getInstance();
+        
+        PersistenceSettings ps = new PersistenceSettings();
+        ps = sm.getPersistenceSettings();
+        
+        String type = ps.getPersistennceType();
+        
+        if (type == "xml" ) {
+            DataLayerXML dlxml = new DataLayerXML();
+            return dlxml;
+        }
+        // else Fehler = nicht gefunden = abfangen!
+            
+        if (type == "sqlite" ) {
+            DataLayerSqlite dlsqlite = new DataLayerSqlite();
+            return dlsqlite;
+        }
+        // else Fehler = nicht gefunden = abfangen!
     }
     
 }
