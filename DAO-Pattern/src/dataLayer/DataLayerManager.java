@@ -48,6 +48,7 @@ public class DataLayerManager {
             return dlsqlite;
         }
         // else Fehler = nicht gefunden = abfangen!
+        return null;
     }
     
 }
