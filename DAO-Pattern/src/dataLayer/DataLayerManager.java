@@ -37,13 +37,13 @@ public class DataLayerManager {
         
         String type = ps.getPersistennceType();
         
-        if (type == "xml" ) {
+        if ("xml".equals(type) ) {
             DataLayerXML dlxml = new DataLayerXML();
             return dlxml;
         }
         // else Fehler = nicht gefunden = abfangen!
             
-        if (type == "sqlite" ) {
+        if ("sqlite".equals(type) ) {
             DataLayerSqlite dlsqlite = new DataLayerSqlite();
             return dlsqlite;
         }
