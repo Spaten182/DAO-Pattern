@@ -22,7 +22,7 @@ import java.sql.Statement;
  */
 public class TrainerDaoSqlite implements ITrainerDao {
     private String CLASSNAME = "org.sqlite.JDBC";
-    private String CONNECTIONSTRING = "jdbc:sqlite:DAO-Pattern/databases/trainer.db";
+    private String CONNECTIONSTRING = "jdbc:sqlite:databases/trainer.db";
     
     @Override
     public ITrainer create() {
@@ -65,6 +65,7 @@ public class TrainerDaoSqlite implements ITrainerDao {
         
         return liste.get(0);
         */
+        return null;
     }
     
     @Override
@@ -156,10 +157,16 @@ public class TrainerDaoSqlite implements ITrainerDao {
             statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
             
+            System.out.println(resultSet.getInt("rowid") + "\t" +
+                    resultSet.getString("name") + "\t" +
+                    resultSet.getInt("alter") + "\t" +
+                    resultSet.getInt("erfahrung"));
+            
             // TODO: convert resultSet string to trainer object
         }
         catch (Exception e) {
             
         }
+        return null;
     }
 }

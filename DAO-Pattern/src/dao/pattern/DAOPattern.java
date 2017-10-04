@@ -5,6 +5,7 @@
  */
 package dao.pattern;
 
+import dataAccessObjects.TrainerDaoSqlite;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
