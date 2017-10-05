@@ -3,9 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/PRG/DAO-Pattern/DAO-Pattern/src/dataLayer/IDataLayer.java</file>
             <file>file:/E:/PRG/DAO-Pattern/DAO-Pattern/src/dataAccessObjects/TrainerDaoSqlite.java</file>
-            <file>file:/E:/PRG/DAO-Pattern/DAO-Pattern/src/dataAccessObjects/DataLayerSqlite.java</file>
+            <file>file:/E:/PRG/DAO-Pattern/DAO-Pattern/src/dataAccessObjects/ITrainerDao.java</file>
+            <file>file:/E:/PRG/DAO-Pattern/DAO-Pattern/src/dao/pattern/DAOPattern.java</file>
         </group>
     </open-files>
 </project-private>

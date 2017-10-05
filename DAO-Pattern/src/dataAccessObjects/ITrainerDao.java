@@ -6,6 +6,7 @@
 package dataAccessObjects;
 
 import businessObjects.*;
+import exceptions.*;
 import java.util.List;
 
 /**
@@ -15,11 +16,11 @@ import java.util.List;
 public interface ITrainerDao {
     public ITrainer create();
     public void delete(ITrainer trainer);
-    public ITrainer first();
-    public ITrainer last();
-    public ITrainer next(ITrainer trainer);
-    public ITrainer previous(ITrainer trainer);
+    public ITrainer first() throws NoTrainerFoundException;
+    public ITrainer last() throws NoTrainerFoundException;
+    public ITrainer next(ITrainer trainer) throws NoNextTrainerFoundException;
+    public ITrainer previous(ITrainer trainer) throws NoPreviousTrainerFoundException;
     public void save (ITrainer trainer);
-    public List<ITrainer> select();
-    public ITrainer select(int id);
+    public List<ITrainer> select() throws NoTrainerFoundException;
+    public ITrainer select(int id) throws NoTrainerFoundException;
 }
