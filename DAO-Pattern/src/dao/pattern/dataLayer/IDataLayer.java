@@ -1,6 +1,6 @@
 package dao.pattern.dataLayer;
 
-import dao.pattern.dataLayer.ITrainerDao;
+import dataAccessObjects.ITrainerDao;
 
 /**
  * @author Kevin

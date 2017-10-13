@@ -1,0 +1,19 @@
+<Root>
+	<Trainer id=1>
+		<Name>Markus</Name>
+		<Alter>25</Alter>
+		<Erfahrung>7</Erfahrung>
+	</Trainer>
+	
+	<Trainer id=2>
+		<Name>Sebastian</Name>
+		<Alter>30</Alter>
+		<Erfahrung>5</Erfahrung>
+	</Trainer>
+	
+	<Trainer id=3>
+		<Name>Klaus</Name>
+		<Alter>45</Alter>
+		<Erfahrung>10</Erfahrung>
+	</Trainer>
+</Root>

@@ -21,7 +21,7 @@ public class Trainer implements ITrainer {
     public Trainer() {}
    
     // Getter und Setter
-    void setId(int id) {
+    public void setId(int id) {
         this.id = id;
     }
     

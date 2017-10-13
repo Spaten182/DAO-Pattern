@@ -36,7 +36,7 @@ public class DataLayerManager {
         ps = sm.getPersistenceSettings();
         
         String type = ps.getPersistennceType();
-        
+        /*
         if ("xml".equals(type) ) {
             DataLayerXML dlxml = new DataLayerXML();
             return dlxml;
@@ -48,6 +48,7 @@ public class DataLayerManager {
             return dlsqlite;
         }
         // else Fehler = nicht gefunden = abfangen!
+        */
         return null;
     }
     

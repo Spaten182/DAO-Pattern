@@ -11,7 +11,7 @@ import dataLayer.IDataLayer;
  *
  * @author Hendrik
  */
-public class DataLayerSqlite implements IDataLayer {
+public class DataLayerXml implements IDataLayer {
     @Override
     public ITrainerDao getTrainerDao() {
         return null;

@@ -1,6 +1,6 @@
 package dataLayer;
 
-import dataLayer.ITrainerDao;
+import dataAccessObjects.ITrainerDao;
 
 /**
  * @author Kevin
