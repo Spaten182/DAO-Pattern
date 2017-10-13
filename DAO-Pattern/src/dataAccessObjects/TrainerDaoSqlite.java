@@ -8,15 +8,14 @@ package dataAccessObjects;
 import java.util.List;
 import businessObjects.*;
 import exceptions.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -27,14 +26,17 @@ public class TrainerDaoSqlite implements ITrainerDao {
     private String CONNECTIONSTRING = "jdbc:sqlite:databases/trainer.db";
     
     @Override
-    public ITrainer create() {
+    public ITrainer create()
+    {
         ITrainer trainer = new Trainer();
         return trainer;
     }
     
     @Override
-    public void delete(ITrainer trainer) {
-        try {
+    public void delete(ITrainer trainer)
+    {
+        try
+        {
             Class.forName(CLASSNAME);
             Connection conn = DriverManager.getConnection(CONNECTIONSTRING);
             String sql = "DELETE FROM trainer WHERE rowid = ? AND name = ?";
@@ -43,17 +45,16 @@ public class TrainerDaoSqlite implements ITrainerDao {
             statement.setString(2, trainer.getName());
             statement.executeUpdate();
         }
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
-        catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        catch (Exception e)
+        {
         }
     }
     
     @Override
-    public ITrainer first() throws NoTrainerFoundException {
-        try {
+    public ITrainer first() throws NoTrainerFoundException
+    {
+        try
+        {
             Class.forName(CLASSNAME);
             Connection conn = DriverManager.getConnection(CONNECTIONSTRING);
             String sql = "SELECT ROWID, * FROM trainer WHERE rowid = 1";
@@ -61,9 +62,12 @@ public class TrainerDaoSqlite implements ITrainerDao {
             ResultSet resultSet = null;
             resultSet = statement.executeQuery();
             
-            if(!resultSet.isBeforeFirst()) {
+            if(!resultSet.isBeforeFirst())
+            {
                 throw new NoTrainerFoundException("Database is empty.");
-            } else {
+            }
+            else
+            {
                 Trainer trainer = new Trainer();
                 trainer.setId(resultSet.getInt("rowid"));
                 trainer.setName(resultSet.getString("name"));
@@ -72,18 +76,17 @@ public class TrainerDaoSqlite implements ITrainerDao {
                 return trainer;
             }
         }
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
-        catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        catch (SQLException | ClassNotFoundException e)
+        {
         }
         return null;
     }
     
     @Override
-    public ITrainer last() throws NoTrainerFoundException {
-        try {
+    public ITrainer last() throws NoTrainerFoundException
+    {
+        try
+        {
             Class.forName(CLASSNAME);
             Connection conn = DriverManager.getConnection(CONNECTIONSTRING);
             String sql = "SELECT ROWID, * FROM trainer WHERE rowid = 1";
@@ -91,9 +94,12 @@ public class TrainerDaoSqlite implements ITrainerDao {
             ResultSet resultSet = null;
             resultSet = statement.executeQuery();
             
-            if(!resultSet.isBeforeFirst()) {
+            if(!resultSet.isBeforeFirst())
+            {
                 throw new NoTrainerFoundException("Database is empty.");
-            } else {
+            }
+            else
+            {
                 while(resultSet.next());
                 resultSet.previous();
                 Trainer trainer = new Trainer();
@@ -104,18 +110,17 @@ public class TrainerDaoSqlite implements ITrainerDao {
                 return trainer;
             }
         }
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
-        catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        catch (SQLException | ClassNotFoundException e)
+        {
         }
         return null;
     }
     
     @Override
-    public ITrainer next(ITrainer trainer) throws NoNextTrainerFoundException {
-        try {
+    public ITrainer next(ITrainer trainer) throws NoNextTrainerFoundException
+    {
+        try
+        {
             Class.forName(CLASSNAME);
             Connection conn = DriverManager.getConnection(CONNECTIONSTRING);
             String sql = "SELECT ROWID, * FROM trainer WHERE rowid = ?";
@@ -124,9 +129,12 @@ public class TrainerDaoSqlite implements ITrainerDao {
             ResultSet resultSet = null;
             resultSet = statement.executeQuery();
             
-            if(!resultSet.isBeforeFirst()) {
+            if(!resultSet.isBeforeFirst())
+            {
                 throw new NoNextTrainerFoundException("No next Trainer found.");
-            } else {
+            }
+            else
+            {
                 Trainer Ntrainer = new Trainer();
                 Ntrainer.setId(resultSet.getInt("rowid"));
                 Ntrainer.setName(resultSet.getString("name"));
@@ -135,18 +143,17 @@ public class TrainerDaoSqlite implements ITrainerDao {
                 return Ntrainer;
             }
         }
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
-        catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        catch (SQLException | ClassNotFoundException e)
+        {
         }
         return null;
     }
     
     @Override
-    public ITrainer previous(ITrainer trainer) throws NoPreviousTrainerFoundException {
-        try {
+    public ITrainer previous(ITrainer trainer) throws NoPreviousTrainerFoundException
+    {
+        try
+        {
             Class.forName(CLASSNAME);
             Connection conn = DriverManager.getConnection(CONNECTIONSTRING);
             String sql = "SELECT ROWID, * FROM trainer WHERE rowid = ?";
@@ -155,9 +162,12 @@ public class TrainerDaoSqlite implements ITrainerDao {
             ResultSet resultSet = null;
             resultSet = statement.executeQuery();
             
-            if(!resultSet.isBeforeFirst()) {
+            if(!resultSet.isBeforeFirst())
+            {
                 throw new NoPreviousTrainerFoundException("No previous Trainer found.");
-            } else {
+            }
+            else
+            {
                 Trainer Ptrainer = new Trainer();
                 Ptrainer.setId(resultSet.getInt("rowid"));
                 Ptrainer.setName(resultSet.getString("name"));
@@ -166,18 +176,17 @@ public class TrainerDaoSqlite implements ITrainerDao {
                 return Ptrainer;
             }
         }
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
-        catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        catch (SQLException | ClassNotFoundException e)
+        {
         }
         return null;
     }
     
     @Override
-    public void save(ITrainer trainer) {
-        try {
+    public void save(ITrainer trainer)
+    {
+        try
+        {
             Class.forName(CLASSNAME);
             Connection conn = DriverManager.getConnection(CONNECTIONSTRING);
             String sql = "INSERT INTO trainer (name, 'alter', erfahrung) VALUES (?, ?, ?)";
@@ -187,17 +196,16 @@ public class TrainerDaoSqlite implements ITrainerDao {
             statement.setInt(3, trainer.getErfahrung());
             statement.executeUpdate();
         }
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
-        catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        catch (Exception e)
+        {
         }
     }
     
     @Override
-    public List<ITrainer> select() throws NoTrainerFoundException {
-        try {
+    public List<ITrainer> select() throws NoTrainerFoundException
+    {
+        try
+        {
             Class.forName(CLASSNAME);
             Connection conn = DriverManager.getConnection(CONNECTIONSTRING);
             String sql = "SELECT ROWID, * FROM trainer";
@@ -205,14 +213,17 @@ public class TrainerDaoSqlite implements ITrainerDao {
             ResultSet resultSet = null;
             resultSet = statement.executeQuery();
             
-            if(!resultSet.isBeforeFirst()) {
+            if(!resultSet.isBeforeFirst())
+            {
                 throw new NoTrainerFoundException("Database is empty.");
             }
-            else {
+            else
+            {
                 List<ITrainer> trainerList = new ArrayList<ITrainer>();
             
                 resultSet.previous();
-                while(resultSet.next()) {
+                while(resultSet.next())
+                {
                     Trainer trainer = new Trainer();
                     trainer.setId(resultSet.getInt("rowid"));
                     trainer.setName(resultSet.getString("name"));
@@ -223,18 +234,17 @@ public class TrainerDaoSqlite implements ITrainerDao {
                 return trainerList;
             }
         }
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
-        catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        catch (SQLException | ClassNotFoundException e)
+        {
         }
         return null;
     }
     
     @Override
-    public ITrainer select(int id) throws NoTrainerFoundException {
-        try {
+    public ITrainer select(int id) throws NoTrainerFoundException
+    {
+        try
+        {
             Class.forName(CLASSNAME);
             Connection conn = DriverManager.getConnection(CONNECTIONSTRING);
             String sql = "SELECT ROWID, * FROM trainer WHERE rowid = ?";
@@ -243,10 +253,12 @@ public class TrainerDaoSqlite implements ITrainerDao {
             ResultSet resultSet = null;
             resultSet = statement.executeQuery();
             
-            if(!resultSet.isBeforeFirst()) {
+            if(!resultSet.isBeforeFirst())
+            {
                 throw new NoTrainerFoundException("No Trainer with that ID exists.");
             }
-            else {
+            else
+            {
                 Trainer trainer = new Trainer();
                 trainer.setId(resultSet.getInt("rowid"));
                 trainer.setName(resultSet.getString("name"));
@@ -255,11 +267,8 @@ public class TrainerDaoSqlite implements ITrainerDao {
                 return trainer;
             }
         }
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
-        catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        catch (SQLException | ClassNotFoundException e)
+        {
         }
         return null;
     }
